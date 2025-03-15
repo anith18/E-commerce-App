@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Prata&display=swap');
+.active-link {
+  font-weight: bold;
+  border-bottom: 2px solid black !important;
+  padding-bottom: 0px;  /* Reduce padding */
+  margin-bottom: -3px;  /* Moves the underline closer */
+  display: inline-block; /* Ensures underline is only as wide as the text */
+}
+.cart-badge {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(30%, 30%);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  border: 1px solid white;
+}
+
+.prata-regular {
+  font-family: "Prata", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+@media (min-width: 1200px) {  /* Target large screens */
+  .col-xl-5-custom {
+    flex: 0 0 20%; /* 100% ÷ 5 = 20% per column */
+    max-width: 20%;
+  }
+}
+
+.product-image {
+  transition: transform 0.3s ease-in-out; /* Smooth transition */
+}
+
+.product-image:hover {
+  transform: scale(1.1); /* Zoom effect on hover */
+}
