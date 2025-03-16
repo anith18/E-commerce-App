@@ -50,7 +50,7 @@ const NewsletterBox = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <Button variant="primary" type="submit">
+              <Button variant="dark" type="submit">
                 Subscribe
               </Button>
             </Form.Group>

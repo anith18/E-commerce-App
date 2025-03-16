@@ -27,7 +27,7 @@ const OurPolicy = () => {
         {policies.map((policy, index) => (
           <Col key={index} xs={12} sm={6} md={4} className="mb-4">
             <div className="d-flex flex-column align-items-center">
-              <div className="mb-3 text-primary">{policy.icon}</div>
+              <div className="mb-3 text-dark">{policy.icon}</div>
               <h5 className="fw-bold">{policy.title}</h5>
               <p className="text-muted small">{policy.description}</p>
             </div>

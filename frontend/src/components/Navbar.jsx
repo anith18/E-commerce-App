@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { assets } from "../assets/assets";
+import { ShopContext } from "../context/ShopContext";
 
 const Navbar = () => {
   const [menuVisible, setMenuVisible] = useState(false);
+  const {setShowSearch}=useContext(ShopContext);
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
@@ -45,13 +47,14 @@ const Navbar = () => {
             <li className="nav-item">
             <NavLink 
             className={({ isActive }) => isActive ? "nav-link active-link fw-bold" : "nav-link fw-bold"} 
-             to="/about" onClick={closeMenu}> ABOUT</NavLink>
+             to="/collection" onClick={closeMenu}> COLLECTIONS</NavLink>
             </li>
             <li className="nav-item">
             <NavLink 
             className={({ isActive }) => isActive ? "nav-link active-link fw-bold" : "nav-link fw-bold"} 
-             to="/collection" onClick={closeMenu}> COLLECTIONS</NavLink>
+             to="/about" onClick={closeMenu}> ABOUT</NavLink>
             </li>
+            
             <li className="nav-item">
             <NavLink 
             className={({ isActive }) => isActive ? "nav-link active-link fw-bold" : "nav-link fw-bold"} 
@@ -63,7 +66,7 @@ const Navbar = () => {
           <div className="d-flex align-items-center gap-4">
             {/* Search Icon */}
             <div className="icon-container">
-              <img src={assets.search_icon} className="icon-img" alt="Search" />
+              <img onClick={()=>setShowSearch(true)} src={assets.search_icon} className="icon-img" alt="Search" />
             </div>
 
             {/* Profile Icon with Dropdown */}

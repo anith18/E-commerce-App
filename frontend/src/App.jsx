@@ -13,11 +13,13 @@ import Contact from './pages/Contact';
 import Product from './pages/Product';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import SearchBar from './components/SearchBar';
 
 const App = () => {
   return (
     <div className="px-4 px-sm-5 px-md-7 px-lg-9">
       <Navbar/>
+      <SearchBar />
       <Routes>
         <Route path='/' element={<Home/>}  />
         <Route path='/about' element={<About/>}  />
