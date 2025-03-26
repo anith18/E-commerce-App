@@ -3,8 +3,9 @@ import {assets} from '../assets/assets'
 import { useState } from 'react';
 import axios from 'axios';
 import { backendUrl } from '../App';
+import { toast } from 'react-toastify';
 
-const Add = () => {
+const Add = ({token}) => {
   const [image1, setImage1] = useState(false);
 const [image2, setImage2] = useState(false);
 const [image3, setImage3] = useState(false);
@@ -20,32 +21,6 @@ const [subCategory, setSubCategory] = useState("Topwear");
 const [bestseller, setBestseller] = useState(false);
 const [sizes, setSizes] = useState([]);
 
-// const onSubmitHandler=async(e)=>{
-//   e.preventDefault();
-//   try{
-//     const formData=new FormData()
-//     formData.append("name",name)
-//     formData.append("description",description)
-//     formData.append("price",price)
-//     formData.append("category",category)
-//     formData.append("Subcategory",subCategory)
-//     formData.append("Sizes",JSON.stringify(sizes))
-
-//     image1 && formData.append("Image1",image1)
-//     image2 && formData.append("Image2",image2)
-//     image3 && formData.append("Image3",image3)
-//     image4 && formData.append("Image4",image4)
-    
-//     const response =axios.post(backendUrl+'/api/product/add',formData)
-//     console.log(response  )
-
-
-//   }catch(error){
-
-//   }
-// }
-
-
 const onSubmitHandler = async (e) => {
   e.preventDefault();
   try {
@@ -54,31 +29,46 @@ const onSubmitHandler = async (e) => {
     formData.append("description", description);
     formData.append("price", price);
     formData.append("category", category);
-    formData.append("Subcategory", subCategory);
-    formData.append("Sizes", JSON.stringify(sizes));
-    formData.append("bestseller", bestseller);
+    formData.append("subCategory", subCategory); // Fixed: lowercase 'subcategory'
+    formData.append("bestseller", bestseller); // Added bestseller field
+    formData.append("sizes", JSON.stringify(sizes)); // Fixed: lowercase 'sizes'
 
-    image1 && formData.append("Image1", image1);
-    image2 && formData.append("Image2", image2);
-    image3 && formData.append("Image3", image3);
-    image4 && formData.append("Image4", image4);
-    
-    const token = localStorage.getItem('token'); // or your auth token storage
-    const response = await axios.post(backendUrl+'/api/product/add', formData, {
+    if (image1) formData.append("image1", image1);
+    if (image2) formData.append("image2", image2);
+    if (image3) formData.append("image3", image3);
+    if (image4) formData.append("image4", image4);
+
+    const config = {
       headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
-    
+        "Content-Type": "multipart/form-data",
+        "token":token
+      },
+    };
+
+    const response = await axios.post(`${backendUrl}/api/product/add`, formData, config);
     console.log("Product added successfully:", response.data);
-    // Reset form or show success message
-    
-  } catch(error) {
-    console.error("Error adding product:", error.response?.data || error.message);
-    // Show error to user, e.g.:
-    alert(error.response?.data?.message || "Failed to add product");
+    if(response.data.success){
+      toast.success(response.data.message)
+      setName('')
+      setDescription('')
+      setImage1(false)
+      setImage2(false)
+      setImage3(false)
+      setImage4(false)
+      setPrice('')
+    }
+    else{
+      toast.error(error.message)
+      
+    }
+
+  } catch (error) { 
+    toast.error(error.message)
+    console.error("Error:", error.response?.data || error.message);
   }
-}
+};
+
+
 
   return (
     <form onSubmit={onSubmitHandler} className="d-flex flex-column w-50 align-items-start">
@@ -184,147 +174,3 @@ const onSubmitHandler = async (e) => {
 
 
 export default Add
-
-
-// import React from 'react'
-// import {assets} from '../assets/assets'
-// import { useState } from 'react';
-// import axios from 'axios';
-// import { backendUrl } from '../App';
-
-// const Add = () => {
-//   const [image1, setImage1] = useState(false);
-//   const [image2, setImage2] = useState(false);
-//   const [image3, setImage3] = useState(false);
-//   const [image4, setImage4] = useState(false);
-
-//   const [name, setName] = useState("");
-//   const [description, setDescription] = useState("");
-//   const [price, setPrice] = useState("");
-
-//   const [category, setCategory] = useState("Men");
-//   const [subCategory, setSubCategory] = useState("Topwear");
-
-//   const [bestseller, setBestseller] = useState(false);
-//   const [sizes, setSizes] = useState([]);
-//   const [loading, setLoading] = useState(false);
-
-//   const onSubmitHandler = async (e) => {
-//     e.preventDefault();
-//     setLoading(true);
-    
-//     try {
-//       const token = localStorage.getItem('token');
-//       if (!token) {
-//         throw new Error('No authentication token found. Please login.');
-//       }
-
-//       const formData = new FormData();
-//       formData.append("name", name);
-//       formData.append("description", description);
-//       formData.append("price", price);
-//       formData.append("category", category);
-//       formData.append("Subcategory", subCategory);
-//       formData.append("Sizes", JSON.stringify(sizes));
-//       formData.append("bestseller", bestseller);
-
-//       image1 && formData.append("Image1", image1);
-//       image2 && formData.append("Image2", image2);
-//       image3 && formData.append("Image3", image3);
-//       image4 && formData.append("Image4", image4);
-      
-//       const response = await axios.post(`${backendUrl}/api/product/add`, formData, {
-//         headers: {
-//           'Authorization': `Bearer ${token}`,
-//           'Content-Type': 'multipart/form-data'
-//         }
-//       });
-
-//       if (response.data.success) {
-//         alert('Product added successfully!');
-//         // Reset form
-//         setName("");
-//         setDescription("");
-//         setPrice("");
-//         setCategory("Men");
-//         setSubCategory("Topwear");
-//         setSizes([]);
-//         setBestseller(false);
-//         setImage1(false);
-//         setImage2(false);
-//         setImage3(false);
-//         setImage4(false);
-//       } else {
-//         throw new Error(response.data.message || 'Failed to add product');
-//       }
-      
-//     } catch(error) {
-//       console.error("Full error:", error);
-//       const errorMessage = error.response?.data?.message || 
-//                          error.message || 
-//                          "Failed to add product. Please try again.";
-//       alert(errorMessage);
-      
-//       if (error.response?.status === 401) {
-//         // Redirect to login if unauthorized
-//         window.location.href = '/login';
-//       }
-//     } finally {
-//       setLoading(false);
-//     }
-//   }
-
-//   return (
-//     <form onSubmit={onSubmitHandler} className="d-flex flex-column w-50 align-items-start">
-//       {/* Upload Images Section - unchanged */}
-      
-//       <div className='w-100'>
-//         <p className='mb-2'>Product Name</p>
-//         <input onChange={(e)=>setName(e.target.value)} value={name} className="form-control w-100" style={{ maxWidth: "500px", padding: "10px 12px" }} type="text" placeholder="Enter name" required />
-//       </div>
-      
-//       <div className='w-100'>
-//         <p className='mb-2'>Product Description</p>
-//         <textarea onChange={(e)=>setDescription(e.target.value)} value={description} className="form-control w-100" style={{ maxWidth: "500px", padding: "10px 12px" }} type="text" placeholder="Enter content here" required />
-//       </div>
-      
-//       <div className='d-flex gap-3 mb-3'>
-//         <div className='d-flex flex-column align-items-start'>
-//           <p>Product category</p>
-//           <select onChange={(e)=>setCategory(e.target.value)} value={category} className="form-select">
-//             <option value="Men">Men</option>
-//             <option value="Women">Women</option>
-//             <option value="Kids">Kids</option>
-//           </select>
-//         </div>
-        
-//         <div className='d-flex flex-column align-items-start'>
-//           <p>Sub category</p>
-//           <select onChange={(e)=>setSubCategory(e.target.value)} value={subCategory} className="form-select">
-//             <option value="Topwear">Topwear</option>
-//             <option value="Bottomwear">Bottomwear</option>
-//             <option value="Winterwear">Winterwear</option>
-//           </select>
-//         </div>
-        
-//         <div className='d-flex flex-column align-items-start'>
-//           <p>Product Price</p>
-//           <input onChange={(e)=>setPrice(e.target.value)} value={price} type='Number' placeholder='25' className="form-control"/>
-//         </div>
-//       </div>
-      
-//       {/* Sizes Section - unchanged */}
-      
-//       <div className="my-3 form-check">
-//         <input onChange={()=>setBestseller(prev=>!prev)} checked={bestseller} className="form-check-input" type="checkbox" id="bestsellerCheckbox" />
-//         <label className="form-check-label" htmlFor="bestsellerCheckbox">Add to Bestseller</label>
-//       </div>
-      
-//       <button type="submit" className="btn text-white" style={{ backgroundColor: "black", borderRadius: "0" }} disabled={loading}>
-//         {loading ? 'Adding...' : 'Add'}
-//       </button>
-//     </form>
-//   );
-// };
-
-// export default Add;

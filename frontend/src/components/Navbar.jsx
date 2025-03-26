@@ -5,7 +5,7 @@ import { ShopContext } from "../context/ShopContext";
 
 const Navbar = () => {
   const [menuVisible, setMenuVisible] = useState(false);
-  const {setShowSearch}=useContext(ShopContext);
+  const {setShowSearch,getCartCount}=useContext(ShopContext);
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
@@ -71,7 +71,7 @@ const Navbar = () => {
 
             {/* Profile Icon with Dropdown */}
             <div className="icon-container position-relative">
-              <img src={assets.profile_icon} className="icon-img" alt="Profile" />
+              <Link to='/login'><img src={assets.profile_icon} className="icon-img" alt="Profile" /></Link>
               <div className="profile-dropdown">
                 <p className="dropdown-item">My Profile</p>
                 <p className="dropdown-item">Orders</p>
@@ -82,7 +82,7 @@ const Navbar = () => {
             {/* Cart Icon */}
             <Link to="/cart" className="icon-container">
               <img src={assets.cart_icon} className="icon-img" alt="Cart" />
-               <p className="cart-badge">10</p>
+               <p className="cart-badge">{getCartCount()}</p>
             </Link>
           </div>
         </div>
