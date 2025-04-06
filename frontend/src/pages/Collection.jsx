@@ -66,13 +66,13 @@ const Collection = () => {
   }
 
 
-  useEffect(()=>{
-    console.log(subCategory);
-  },[subCategory])
+  // useEffect(()=>{
+  //   console.log(subCategory);
+  // },[subCategory])
 
   useEffect(()=>{
     applyFilter();
-  },[category,subCategory,showSearch,search])
+  },[category,subCategory,showSearch,search,products])
 
   useEffect(()=>{
     sortProduct();

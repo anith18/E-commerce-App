@@ -5,7 +5,16 @@ import { ShopContext } from "../context/ShopContext";
 
 const Navbar = () => {
   const [menuVisible, setMenuVisible] = useState(false);
-  const {setShowSearch,getCartCount}=useContext(ShopContext);
+  const {setShowSearch,getCartCount,navigate,setToken,token,setCartItems}=useContext(ShopContext);
+
+  const Logout=()=>{
+    navigate('/login')
+    localStorage.removeItem('token')
+    setToken('')
+    setCartItems({})
+
+  }
+  
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
@@ -71,12 +80,14 @@ const Navbar = () => {
 
             {/* Profile Icon with Dropdown */}
             <div className="icon-container position-relative">
-              <Link to='/login'><img src={assets.profile_icon} className="icon-img" alt="Profile" /></Link>
-              <div className="profile-dropdown">
+              
+              <img onClick={()=>token? null: navigate('/login')} src={assets.profile_icon} className="icon-img" alt="Profile" />
+              {/* dropdown */}
+              {token && <div className="profile-dropdown">
                 <p className="dropdown-item">My Profile</p>
-                <p className="dropdown-item">Orders</p>
-                <p className="dropdown-item text-danger">Logout</p>
-              </div>
+                <p onClick={()=>navigate('/orders')} className="dropdown-item">Orders</p>
+                <p onClick={Logout} className="dropdown-item text-danger">Logout</p>
+              </div>}
             </div>
 
             {/* Cart Icon */}
