@@ -9,7 +9,7 @@ const About = () => {
       <section className="text-center">
         <h1 className="prata-regular display-4">About Us</h1>
         <p className="lead">
-          Welcome to ForeverBuy, your one-stop destination for all your shopping needs. We are committed to providing high-quality products and exceptional customer service.
+          Welcome to MyCart, your one-stop destination for all your shopping needs. We are committed to providing high-quality products and exceptional customer service.
         </p>
       </section>
 
@@ -31,7 +31,7 @@ const About = () => {
 
       {/* Team Section */}
       <section className="my-5">
-        <h2 className="text-center mb-4">Meet Our Team</h2>
+        {/* <h2 className="text-center mb-4">Meet Our Team</h2>
         <div className="row">
           <div className="col-md-4 text-center">
             <img
@@ -60,7 +60,7 @@ const About = () => {
             <h4>Mike Johnson</h4>
             <p>Chief Technology Officer</p>
           </div>
-        </div>
+        </div> */}
       </section>
 
       <NewsletterBox />

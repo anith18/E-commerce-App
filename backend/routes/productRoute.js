@@ -11,7 +11,7 @@ productRouter.post("/add",adminAuth,upload.fields([
     { name: 'image3', maxCount: 1 },
     { name: 'image4', maxCount: 1 }
   ]) ,addProduct);
-productRouter.post("/remove", adminAuth,removeProduct); // ✅ Fixed function name
+productRouter.post("/remove", adminAuth,removeProduct); 
 productRouter.post("/single", singleProduct);
 productRouter.get("/list", listProducts);
 

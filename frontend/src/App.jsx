@@ -22,6 +22,7 @@ const App = () => {
 
   return (
     <div className="px-4 px-sm-5 px-md-7 px-lg-9">
+      {/* <ToastContainer /> */}
       <ToastContainer />
       <Navbar />
       <SearchBar />

@@ -72,7 +72,7 @@ const Product = () => {
           </div>
 
           {/* Price */}
-          <p className="mt-1 fs-2 fw-medium">{currency}{productData.price}</p>
+          <p className="mt-1 fs-2 fw-medium">Rs.{productData.price}</p>
 
           {/* Description */}
           <p className="mt-0 text-secondary">{productData.description}</p>

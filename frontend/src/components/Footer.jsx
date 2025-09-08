@@ -29,9 +29,9 @@ const Footer = () => {
           <Col md={4}>
             <h5>Contact Us</h5>
             <p>
-              Address: 123 Fashion Street, New Delhi, India<br />
-              Phone: +91 836-8302246<br />
-              Email: care@forevershoes.in
+              Brodipeta 4/13,  Guntur, India<br />
+              Phone: +91 9381190609<br />
+              Email: forever@gmail.in
             </p>
           </Col>
         </Row>
@@ -46,7 +46,7 @@ const Footer = () => {
         </Row>
         <Row className="mt-4">
           <Col className="text-center">
-            <p className="mb-0">&copy; {new Date().getFullYear()} Forever Buy. All rights reserved.</p>
+            <p className="mb-0">&copy; {new Date().getFullYear()} Forever. All rights reserved.</p>
           </Col>
         </Row>
       </Container>

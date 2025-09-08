@@ -57,7 +57,7 @@ const Cart = () => {
 
                   {/* Product Price */}
                   <div className="col-md-3 text-center">
-                    <p className="fw-bold">{currency} {productData.price}</p>
+                    <p className="fw-bold">Rs. {productData.price}</p>
                   </div>
 
                   {/* Product Quantity */}

@@ -30,6 +30,7 @@ const Navbar = () => {
         {/* Brand Logo */}
         <a className="navbar-brand" href="/">
           <img src={assets.logo} alt="Logo" style={{ height: "50px" }} />
+          {/* MyCart */}
         </a>
 
         {/* Toggle button for mobile view */}

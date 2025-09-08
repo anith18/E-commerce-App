@@ -13,17 +13,17 @@ const CartTotal = () => {
             <div className="d-flex flex-column gap-2 mt-2 text-sm">
                 <div className="d-flex justify-content-between">
                     <p>SubTotal</p>
-                    <p>{currency}{getCartAmount()}.00</p>
+                    <p>Rs.{getCartAmount()}.00</p>
                 </div>
                 <hr />
                 <div className="d-flex justify-content-between">
                     <p>Shipping Fee</p>
-                    <p>{currency} {delivery_fee}.00</p>
+                    <p>Rs. {delivery_fee}.00</p>
                 </div>
                 <hr />
                 <div className="d-flex justify-content-between">
                     <b>Total</b>
-                    <b>{currency} {getCartAmount() === 0 ? 0 : getCartAmount() + delivery_fee}.00</b>
+                    <b>Rs.{getCartAmount() === 0 ? 0 : getCartAmount() + delivery_fee}.00</b>
                 </div>
             </div>
         </div>

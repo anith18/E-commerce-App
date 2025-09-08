@@ -25,12 +25,12 @@ const Contact = () => {
         <div className="d-flex flex-column align-items-start gap-3">
           <p className="fw-semibold fs-5 text-secondary">Our Store</p>
           <p className="text-muted">
-            54709 Willms Station<br />
-            Suite 350, Washington, USA
+            3/14 Brodipeta<br />
+            Guntur, AP, Inida
           </p>
           <p className="text-muted">
             Tel: (415) 555-0132<br />
-            Email: admin@forever.com
+            Email: forever@gmail.com
           </p>
           <p className="fw-semibold fs-5 text-secondary">Careers at Forever</p>
           <p className="fw-semibold fs-5 text-secondary">
